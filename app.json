@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "f0462275-8dd0-46a5-a650-2c1725f250af"
+      }
+    },
+    "owner": "mack1025",
+    "android": {
+      "package": "com.mack1025.boilerplatereactnativewithexpo"
+    },
+    "ios": {
+      "bundleIdentifier": "com.mack1025.boilerplatereactnativewithexpo"
+    }
+  }
+}

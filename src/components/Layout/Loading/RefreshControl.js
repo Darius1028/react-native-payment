@@ -1,0 +1,33 @@
+/* eslint-disable react/style-prop-object */
+
+
+import React from 'react';
+// import PropTypes from 'prop-types';
+
+import useTheme from 'src/hooks/useTheme';
+
+import { RefreshControl as RefreshControlRN } from 'react-native';
+
+const propTypes = {
+};
+
+const defaultProps = {
+};
+
+const RefreshControl = (props) => {
+	const theme = useTheme();
+
+	return (
+		<RefreshControlRN
+			colors={[theme.brand_primary]}
+			tintColor={theme.brand_primary}
+			{...props}
+		/>
+	);
+};
+
+RefreshControl.propTypes = propTypes;
+
+RefreshControl.defaultProps = defaultProps;
+
+export default React.memo(RefreshControl);
