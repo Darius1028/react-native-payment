@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "DevApp",
     "extra": {
       "eas": {
         "projectId": "f0462275-8dd0-46a5-a650-2c1725f250af"
@@ -7,10 +8,10 @@
     },
     "owner": "mack1025",
     "android": {
-      "package": "com.mack1025.boilerplatereactnativewithexpo"
+      "package": "com.mack1025.payment01"
     },
     "ios": {
-      "bundleIdentifier": "com.mack1025.boilerplatereactnativewithexpo"
+      "bundleIdentifier": "com.mack1025.payment01"
     }
   }
 }

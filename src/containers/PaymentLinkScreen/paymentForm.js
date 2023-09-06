@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 18,
 		fontWeight: 'bold',
+		color: 'grey',
 	},
 	contentContainer: {
 		paddingTop: 10,
@@ -73,11 +74,11 @@ const PaymentForm = () => {
 	useEffect(() => {
 		if (messagePayment) {
 			if (errorPayment) {
-				setToken(null);
+				setToken({ info: messagePayment, error: true });
 			} else {
-				setToken(paymentLink ? paymentLink.token : null);
-				scrollViewRef.current.scrollTo({ y: 0, animated: true });
+				setToken(paymentLink ? { info: paymentLink.token, error: false } : null);
 			}
+			scrollViewRef.current.scrollTo({ y: 0, animated: true })
 			dispatch(cleanPaymentLink());
 		}
 	}, [messagePayment, errorPayment, dispatch, paymentLink]);
@@ -103,7 +104,9 @@ const PaymentForm = () => {
 					showIndicator={false}
 				>
 					{token && (
-						<Text style={styles.token}> Token: {token}</Text>
+						<Text style={{ ...styles.token, color: token.error ? 'red' : 'green' }}>
+							{token.error ? `Error: ${token.info}` : `Token: ${token.info}`}
+						</Text>
 					)}
 					<View style={styles.container}>
 						<Text style={styles.label}>Generate Invoice</Text>

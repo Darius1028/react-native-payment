@@ -87,12 +87,12 @@ const PaymentForm = () => {
 	useEffect(() => {
 		if (messagePayment) {
 			if (errorPayment) {
-				setToken(null);
+				setToken({ info: messagePayment, error: true });
 			} else {
-				setToken(paymentRequest ? paymentRequest.token : null);
-				scrollViewRef.current.scrollTo({ y: 0, animated: true });
+				setToken(paymentRequest ? { info: paymentRequest.token, error: false } : null);
 			}
 			dispatch(cleanPaymentRequest());
+			scrollViewRef.current.scrollTo({ y: 0, animated: true });
 		}
 	}, [messagePayment, errorPayment, dispatch, paymentRequest]);
 
@@ -117,7 +117,9 @@ const PaymentForm = () => {
 					showIndicator={false}
 				>
 					{token && (
-						<Text style={styles.token}> Token: {token}</Text>
+						<Text style={{ ...styles.token, color: token.error ? 'red' : 'green' }}>
+							{token.error ? `Error: ${token.info}` : `Token: ${token.info}`}
+						</Text>
 					)}
 					<View style={styles.container}>
 						<Text style={styles.sectionLabel}>Entity Payment</Text>
