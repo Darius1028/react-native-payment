@@ -43,7 +43,6 @@ const singleApi = async (dataApi = mandatory(), dispatch) => {
 export default ({ dispatch/* , getState */ }) => next => action => {
 	switch (action.type) {
 		case SINGLE_API:
-			console.log('SINGLE_API');
 			return singleApi(action.payload, dispatch);
 
 		default:

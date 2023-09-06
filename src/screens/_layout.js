@@ -33,7 +33,7 @@ const RootLayoutNav = ({ colorScheme, loggedIn }) => {
   const configs = useNavConfigs();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={DarkTheme}>
       <Stack
         screenOptions={{
           ...configs,

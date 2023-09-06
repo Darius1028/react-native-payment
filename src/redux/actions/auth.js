@@ -1,7 +1,6 @@
 import {
 	AUTH_ERR_LOG_IN,
 	AUTH_ERR_LOG_OUT,
-	AUTH_LOGGED_IN,
 	AUTH_LOGGING_IN,
 	AUTH_LOGGING_OUT,
 	AUTH_LOGOUT,
@@ -15,11 +14,6 @@ export const loggingIn = (data) => ({
 	payload: data,
 });
 
-export const loggedIn = (data) => ({
-	type: AUTH_LOGGED_IN,
-	payload: data,
-});
-
 export const errorLogIn = (errorMessage) => ({
 	type: AUTH_ERR_LOG_IN,
 	payload: errorMessage,
@@ -27,8 +21,6 @@ export const errorLogIn = (errorMessage) => ({
 
 export const login = (user, next = f => f) => (dispatch) => {
 	authService.login(user).then(async (res) => {
-		await dispatch(loggedIn(res.data.user));
-
 		await AuthStorage.setValue({
 			accessToken: +new Date(),
 			refreshToken: +new Date(),
@@ -44,8 +36,6 @@ export const login = (user, next = f => f) => (dispatch) => {
 		return res.data.user;
 	}).catch((err) => {
 		dispatch(errorLogIn('Wrong username or password'));
-	}).finally(() => {
-		dispatch(loggingIn(false));
 	});
 };
 

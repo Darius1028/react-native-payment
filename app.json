@@ -3,15 +3,15 @@
     "scheme": "DevApp",
     "extra": {
       "eas": {
-        "projectId": "f0462275-8dd0-46a5-a650-2c1725f250af"
+        "projectId": "3884d333-a0dc-4b8e-acd8-ff777a426386"
       }
     },
     "owner": "mack1025",
     "android": {
-      "package": "com.mack1025.payment01"
+      "package": "com.mack1025.pat"
     },
     "ios": {
-      "bundleIdentifier": "com.mack1025.payment01"
+      "bundleIdentifier": "com.mack1025.pat"
     }
   }
 }

@@ -22,14 +22,21 @@ const styles = StyleSheet.create({
 	column: {
 		fontSize: 11,
 	},
+	textContainer: {
+		width: '30%',
+		overflow: 'hidden',
+	},
+	truncatedText: {
+		overflow: 'hidden',
+	},
 });
 
 const Item = ({ payment }) => {
 	return (
 		<View style={styles.container}>
-			<View style={styles.column}>
+			<View style={styles.textContainer}>
 				<Text>Description:</Text>
-				<Text>{payment.description}</Text>
+				<Text numberOfLines={1} style={styles.truncatedText}>{payment.description}</Text>
 			</View>
 			<View style={styles.column}>
 				<Text>Amount:</Text>
@@ -41,7 +48,7 @@ const Item = ({ payment }) => {
 			</View>
 			<View style={styles.column}>
 				<Text>Created:</Text>
-				<Text>{payment.created_at}</Text>
+				<Text>{payment.created_at.split(' ')[0]}</Text>
 			</View>
 		</View>
 	);

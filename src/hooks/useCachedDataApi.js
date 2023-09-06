@@ -6,7 +6,7 @@ export default function useCachedDataApi() {
 		// eslint-disable-next-line no-useless-catch
 		try {
 			const loggedIn = await AuthStorage.loggedIn;
-
+			console.log(loggedIn);
 			return {
 				loggedIn,
 			};

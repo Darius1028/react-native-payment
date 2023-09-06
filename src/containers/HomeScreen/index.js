@@ -7,6 +7,7 @@ import View from 'src/components/UIDisplay/View';
 import Container from 'src/components/Layout/Container';
 import UserItem from './userItem';
 import EditUserModal from './editUserModal';
+import { LoadingOverlay } from 'src/components/UIControls/loadingOverlay';
 
 const styles = StyleSheet.create({
 	container: {
@@ -47,7 +48,7 @@ const HomeScreen = () => {
 	const usersData = useSelector(state => state.users);
 	const [editingUser, setEditingUser] = useState(null);
 	const [isEditingModalVisible, setIsEditingModalVisible] = useState(false);
-
+	const [isLoading, setIsLoading] = useState(true);
 	const handleEditUser = (user) => {
 		setEditingUser(user);
 		setIsEditingModalVisible(true);
@@ -70,7 +71,13 @@ const HomeScreen = () => {
 	};
 
 	useEffect(() => {
-		dispatch(users());
+		const fetchData = async () => {
+			setTimeout(async () => {
+				await dispatch(users());
+				setIsLoading(false);
+			}, 500);
+		};
+		fetchData();
 	}, []);
 
 	const handleDeleteUser = (user) => {
@@ -95,6 +102,7 @@ const HomeScreen = () => {
 
 	return (
 		<Container scrollable={false}>
+			<LoadingOverlay isVisible={isLoading} />
 			<ScrollView
 				style={styles.container}
 				contentContainerStyle={styles.contentContainer}

@@ -27,7 +27,7 @@ const SignUpScreen = (props) => {
 	const inputPass = React.useRef();
 	const [form] = Form.useForm();
 
-	const handleSubmitFrom = React.useCallback(async (values) => {
+	const handleSubmitFrom = async (values) => {
 		try {
 			setLoading(true);
 			await dispatch(await actionSignUp(values));
@@ -37,7 +37,7 @@ const SignUpScreen = (props) => {
 		} finally {
 			setLoading(false);
 		}
-	}, [dispatch, router]);
+	};
 
 	return (
 		<KeyboardAvoidingView

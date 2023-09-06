@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from 'src/components/Layout/Container';
 import InputText from 'src/components/UIControls/InputText';
@@ -17,10 +17,6 @@ const initialFormData = {
 };
 
 const styles = StyleSheet.create({
-	container: {
-	  flex: 1,
-	  padding: 16,
-	},
 	label: { marginBottom: 10, marginTop: 10 },
 	sectionLabel: {
 	  marginTop: 20,
@@ -40,7 +36,6 @@ const styles = StyleSheet.create({
 		color: 'grey',
 	},
 	contentContainer: {
-		paddingTop: 10,
 		flexGrow: 1,
 	},
 
@@ -89,76 +84,67 @@ const PaymentForm = () => {
 
 	return (
 		<ScrollView
-			style={styles.container}
 			contentContainerStyle={styles.contentContainer}
 			ref={scrollViewRef}
 		>
-			<KeyboardAvoidingView
-				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+			<LoadingOverlay isVisible={isLoading} />
+			<Container
+				headerShown
+				headerTransparent
+				loading={false}
+				showIndicator={false}
 			>
-				<LoadingOverlay isVisible={isLoading} />
-				<Container
-					headerShown
-					headerTransparent
-					loading={false}
-					showIndicator={false}
-				>
-					{token && (
-						<Text style={{ ...styles.token, color: token.error ? 'red' : 'green' }}>
-							{token.error ? `Error: ${token.info}` : `Token: ${token.info}`}
-						</Text>
-					)}
-					<View style={styles.container}>
-						<Text style={styles.label}>Generate Invoice</Text>
-						<InputText
-							value={formData.generate_invoice}
-							onChangeText={(text) => handleInputChange('generate_invoice', text)}
-						/>
-
-						<Text style={styles.label}>Description</Text>
-						<InputText
-							value={formData.description}
-							onChangeText={(text) => handleInputChange('description', text)}
-						/>
-
-						<Text style={styles.label}>Amount</Text>
-						<InputText
-							value={formData.amount}
-							onChangeText={(text) => handleInputChange('amount', text)}
-						/>
-
-						<Text style={styles.label}>Amount with Tax</Text>
-						<InputText
-							value={formData.amount_with_tax}
-							onChangeText={(text) => handleInputChange('amount_with_tax', text)}
-						/>
-
-						<Text style={styles.label}>Amount without Tax</Text>
-						<InputText
-							value={formData.amount_without_tax}
-							onChangeText={(text) => handleInputChange('amount_without_tax', text)}
-						/>
-
-						<Text style={styles.label}>Tax Value</Text>
-						<InputText
-							value={formData.tax_value}
-							onChangeText={(text) => handleInputChange('tax_value', text)}
-						/>
-						<SafeAreaView
-							style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}
+				{token && (
+					<Text style={{ ...styles.token, color: token.error ? 'red' : 'green' }}>
+						{token.error ? `Error: ${token.info}` : `Token: ${token.info}`}
+					</Text>
+				)}
+				<View style={styles.container}>
+					<Text style={styles.label}>Generate Invoice</Text>
+					<InputText
+						value={formData.generate_invoice}
+						onChangeText={(text) => handleInputChange('generate_invoice', text)}
+					/>
+					<Text style={styles.label}>Description</Text>
+					<InputText
+						value={formData.description}
+						onChangeText={(text) => handleInputChange('description', text)}
+					/>
+					<Text style={styles.label}>Amount</Text>
+					<InputText
+						value={formData.amount}
+						onChangeText={(text) => handleInputChange('amount', text)}
+					/>
+					<Text style={styles.label}>Amount with Tax</Text>
+					<InputText
+						value={formData.amount_with_tax}
+						onChangeText={(text) => handleInputChange('amount_with_tax', text)}
+					/>
+					<Text style={styles.label}>Amount without Tax</Text>
+					<InputText
+						value={formData.amount_without_tax}
+						onChangeText={(text) => handleInputChange('amount_without_tax', text)}
+					/>
+					<Text style={styles.label}>Tax Value</Text>
+					<InputText
+						value={formData.tax_value}
+						onChangeText={(text) => handleInputChange('tax_value', text)}
+					/>
+					<SafeAreaView
+						style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}
+					>
+						<TouchableOpacity
+							onPress={handleSubmit}
+							style={{ backgroundColor: '#00953B', padding: 15, borderRadius: 4, width: '100%' }}
 						>
-							<TouchableOpacity
-								onPress={handleSubmit}
-								style={{ backgroundColor: '#00953B', padding: 15, borderRadius: 4, width: '100%' }}
-							>
-								<Text style={{ color: '#fff', textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>
-									Submit
-								</Text>
-							</TouchableOpacity>
-						</SafeAreaView>
-					</View>
-				</Container>
-			</KeyboardAvoidingView>
+							<Text style={{ color: '#fff', textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>
+								Submit
+							</Text>
+						</TouchableOpacity>
+					</SafeAreaView>
+				</View>
+			</Container>
+
 		</ScrollView>
 
 	);

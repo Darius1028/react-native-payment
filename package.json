@@ -1,9 +1,8 @@
 {
-  "name": "boilerplate-react-native-with-expo",
+  "name": "payment",
   "version": "3.0.0",
-  "repository": "https://github.com/tientran0019/boilerplate-react-native-with-expo",
-  "description": "A boilerplate for a react-native app using expo",
-  "author": "Tien Tran <tientran0019@gmail.com>",
+  "description": "react-native app using expo",
+  "author": "",
   "keywords": [
     "expo",
     "boilerplate",
@@ -110,6 +109,10 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "redux-devtools-extension": "^2.13.9"
+  },
+  "resolutions": {
+    "@expo/config-plugins": "~6.0.0",
+    "@expo/prebuild-config": "~6.0.0"
   },
   "private": true
 }
